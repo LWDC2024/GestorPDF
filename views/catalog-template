@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .cover {
+            text-align: center;
+            padding: 1px 0;
+            background-color: #f4f4f4;
+            page-break-after: always;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px 0;
+            page-break-after: always;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            page-break-inside: avoid;
+        }
+        .product img {
+            max-width: 100px;
+            height: auto;
+        }
+        @page {
+            margin: 1cm;
+        }
+        .page-number:before {
+            content: counter(page);
+        }
+        .page-break {
+            page-break-after: always;
+        }
+
+
+        /* PORTADA */ 
+        body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.cover {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full height for cover page */
+  background-image: url('Portada-01.jpg'); /* Assuming you have the image named 'Portada-01.jpg' */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.cover h1 {
+  font-size: 5rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.cover a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 1cm;
+  }
+
+  .cover {
+    height: auto;
+    background-size: contain;
+    background-position: top;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <h1><a style="text-align: center">PORTADA GENERAL<a/></h1>
+    </div>
+    
+    <div class="menu">
+       
+        <a href="#">Introduccion</a>
+    
+    </div>
+    
+    {{#each products}}
+    <div class="product">{{formatDate}}
+        <h2>{{name}}</h2>
+        <p>ID: {{id}}</p>
+        <p>{{category}}</p>
+        <p>{{sub_category}}</p>
+        <img src="{{image}}" alt="{{name}}">
+        <p>Descripcion {{Descripcion}}</p>
+        <p>Caracteristicas {{caracteristicas}}</p>
+        <p>Medidas {{Medidas}}</p>
+        <p>Recomendaciones {{Recomendaciones}}</p>
+        <p>Materiales {{Materiales}}</p>
+        <p>Precio: {{price}}</p>
+        
+        
+    </div>
+    {{#if @last}}{{else}}<div class="page-break"></div>{{/if}}
+    {{/each}}
+    
+    <div class="page-number"></div>
+</body>
+</html>
